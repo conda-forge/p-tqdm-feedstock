@@ -1,5 +1,5 @@
 {% set name = "p-tqdm" %}
-{% set version = "1.4.1" %}
+{% set version = "1.4.2" %}
 
 
 package:
@@ -8,7 +8,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/p_tqdm-{{ version }}.tar.gz
-  sha256: 877f33e2418b612ad498c6c14872faa68a049d4b1f146d42ca8ada24fc0b79ec
+  sha256: 0f860c5facd0b0059da39998e55cfc035563f92d85d2f4895ba88a675c3c7529
 
 build:
   number: 0
