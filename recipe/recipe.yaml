@@ -1,0 +1,59 @@
+schema_version: 1
+
+context:
+  name: p-tqdm
+  version: "1.4.2"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/p_tqdm-${{ version }}.tar.gz
+  sha256: 0f860c5facd0b0059da39998e55cfc035563f92d85d2f4895ba88a675c3c7529
+
+build:
+  number: 2
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - setuptools
+  run:
+    - pathos
+    - python >=${{ python_min }}
+    - six
+    - tqdm
+
+tests:
+  - python:
+      imports:
+        - p_tqdm
+      pip_check: true
+      python_version:
+        - ${{ python_min }}
+        - "*"
+
+about:
+  license: MIT
+  license_file: LICENSE.txt
+  summary: Parallel processing with progress bars
+  description: |
+    p_tqdm makes parallel processing with progress bars easy.
+    p_tqdm is a wrapper around pathos.multiprocessing and tqdm. Unlike
+    Python's default multiprocessing library, pathos provides a more
+    flexible parallel map which can apply almost any type of function
+    --- including lambda functions, nested functions, and class methods
+    --- and can easily handle functions with multiple arguments. tqdm is
+    applied on top of pathos's parallel map and displays a progress bar
+    including an estimated time to completion.
+  homepage: https://github.com/swansonk14/p_tqdm
+  repository: https://github.com/swansonk14/p_tqdm
+  documentation: https://github.com/swansonk14/p_tqdm
+
+extra:
+  recipe-maintainers:
+    - jan-janssen
